@@ -1,3 +1,6 @@
-const SUBREDDITS_LIST = [
-    ""
+export const SUBREDDITS_LIST = [
+    "GetMotivated",
+    "gaming",
+    "csmajors",
+    "ProgrammerHumor",
 ]

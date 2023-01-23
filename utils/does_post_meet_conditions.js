@@ -12,8 +12,9 @@ export function does_post_meet_conditions(post) {
         }
 
         // If the post has a url to something that isn't an image - return false
-        if (post["data"]["url_overridden_by_dest"][8] !== "i") {
-            return false;
+        if (post["data"]["url_overridden_by_dest"]) {
+            if ((post["data"]["url_overridden_by_dest"][8]) !== "i")
+                return false;
         }
 
         // If here, the post meets conditions.
