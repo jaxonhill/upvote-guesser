@@ -16,7 +16,7 @@ export default function GameScreen() {
     // Error checking: Check that both posts do not have the same upvotes or id. 
     // If they do, then refetch.
     if (firstPost && secondPost) {
-        if (firstPost.id === secondPost.id) {
+        if (firstPost.id === secondPost.id || firstPost.upvotes === secondPost.upvotes) {
             fetchAndSetNewPosts();
         }
     }
@@ -26,10 +26,6 @@ export default function GameScreen() {
 
     return (
         <div className="flex flex-col gap-12">
-            {/* <div>
-                {firstPost && <p>{firstPost.title}</p>}
-                {secondPost && <p>{secondPost.title}</p>}
-            </div> */}
             <button onClick={fetchAndSetNewPosts} className="bg-white shadow py-2 rounded-2xl">New Round</button>
             {firstPost && <PostSection post={firstPost} />}
             <p className="text-center text-gray-600 font-bold text-5xl">OR</p>
