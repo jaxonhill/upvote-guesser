@@ -13,5 +13,16 @@ export const get_required_post_info = (post) => {
         postInfo["image"] = null;
     }
 
+    // Set text to null or the text of the post depending on if there is a text section
+    if (post["data"].hasOwnProperty("selftext")) {
+        if (post["data"]["selftext"] === "") {     // If empty string
+            postInfo["text"] = null;
+        } else {
+            postInfo["text"] = post["data"]["selftext"]
+        }
+    } else {
+        postInfo["text"] = null;
+    }
+
     return postInfo;
 }
