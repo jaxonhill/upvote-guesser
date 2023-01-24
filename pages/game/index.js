@@ -21,6 +21,9 @@ export default function GameScreen() {
         }
     }
 
+    console.log(firstPost);
+    console.log(secondPost);
+
     return (
         <div className="flex flex-col gap-12">
             {/* <div>
@@ -28,9 +31,9 @@ export default function GameScreen() {
                 {secondPost && <p>{secondPost.title}</p>}
             </div> */}
             <button onClick={fetchAndSetNewPosts} className="bg-white shadow py-2 rounded-2xl">New Round</button>
-            <PostSection post={firstPost} />
+            {firstPost && <PostSection post={firstPost} />}
             <p className="text-center text-gray-600 font-bold text-5xl">OR</p>
-            <PostSection post={secondPost} />
+            {secondPost && <PostSection post={secondPost} />}
         </div>
     )
 }
