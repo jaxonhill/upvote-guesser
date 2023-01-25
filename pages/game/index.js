@@ -1,6 +1,7 @@
 import PostSection from "@/components/PostSection"
 import { get_two_random_posts } from "@/utils/get_two_random_posts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 // gameState = ["loading", "error", "playing", "roundWin", "roundLose", "gameOver"]
 
@@ -12,6 +13,10 @@ export default function GameScreen() {
     const [userAnswer, setUserAnswer] = useState(null);
     const [gameState, setGameState] = useState("playing");
 
+    useEffect(() => {
+        handleStartGame();
+    }, [])
+
     // Calculate correct answer based on first and second post info
     let correctAnswerID;
     if (firstPost && secondPost) {
@@ -20,6 +25,11 @@ export default function GameScreen() {
         } else {
             correctAnswerID = secondPost.id;
         }
+    }
+
+    const handleStartGame = () => {
+        setUserScore(0);
+        handleStartRound();
     }
 
     const handleStartRound = async () => {
@@ -89,9 +99,16 @@ export default function GameScreen() {
             )
         case ("gameOver"):
             return (
-                <div>
-                    <p className="text-center">Game Over!</p>
-                </div>
+                <article className="bg-white rounded-2xl shadow p-8 flex flex-col items-center">
+                    <p className="text-3xl text-gray-600 mb-4">
+                        Final Score:
+                    </p>
+                    <p className="text-reddit-orange font-bold text-5xl mb-8">{userScore}</p>
+                    <div className="w-full flex flex-col gap-4">
+                        <button className="bg-reddit-orange w-full text-3xl font-bold text-white p-4 rounded-2xl">Share</button>
+                        <Link href="/"><button className="bg-white border-2 w-full text-3xl border-reddit-orange text-reddit-orange p-4 font-bold rounded-2xl">Back home</button></Link>
+                    </div>
+                </article>
             )
         case ("loading"):
             return (
