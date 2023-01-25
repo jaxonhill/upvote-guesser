@@ -1,6 +1,7 @@
 export const SUBREDDITS_LIST = [
-    "GetMotivated",
-    "gaming",
+    // "GetMotivated",
+    // "gaming",
     "csmajors",
-    "ProgrammerHumor",
+    // "ProgrammerHumor",
+    // "AskReddit",
 ]
