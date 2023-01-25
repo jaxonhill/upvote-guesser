@@ -2,6 +2,7 @@ import PostSection from "@/components/PostSection"
 import { get_two_random_posts } from "@/utils/get_two_random_posts";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import CopyToClipboard from "react-copy-to-clipboard";
 
 // gameState = ["loading", "error", "playing", "roundWin", "roundLose", "gameOver"]
 
@@ -11,6 +12,7 @@ export default function GameScreen({ userScore, setUserScore }) {
     const [secondPost, setSecondPost] = useState(null);
     const [userAnswer, setUserAnswer] = useState(null);
     const [gameState, setGameState] = useState("playing");
+    const [isCopied, setIsCopied] = useState(false);
 
     useEffect(() => {
         handleStartGame();
@@ -29,6 +31,7 @@ export default function GameScreen({ userScore, setUserScore }) {
     const handleStartGame = () => {
         setUserScore(0);
         handleStartRound();
+        setIsCopied(false);
     }
 
     const handleStartRound = async () => {
@@ -56,11 +59,11 @@ export default function GameScreen({ userScore, setUserScore }) {
 
     // Error checking: Check that both posts do not have the same upvotes or id. 
     // If they do, then refetch. MAKE THIS INTO THE FUNCTION (get_random_posts). SHOULD NOT BE OUT HERE.
-    if (firstPost && secondPost) {
-        if (firstPost.id === secondPost.id || firstPost.upvotes === secondPost.upvotes) {
-            handleStartRound();
-        }
-    }
+    // if (firstPost && secondPost) {
+    //     if (firstPost.id === secondPost.id || firstPost.upvotes === secondPost.upvotes) {
+    //         handleStartRound();
+    //     }
+    // }
 
     switch (gameState) {
         case ("playing"):
@@ -102,8 +105,14 @@ export default function GameScreen({ userScore, setUserScore }) {
                         Final Score:
                     </p>
                     <p className="text-reddit-orange font-bold text-5xl mb-8">{userScore}</p>
+                    {isCopied && <p className="text-xl text-gray-600 mb-4 font-bold">Copied to clipboard!</p>}
                     <div className="w-full flex flex-col gap-4">
-                        <button className="bg-reddit-orange w-full text-3xl font-bold text-white p-4 rounded-2xl shadow">Share</button>
+                        <CopyToClipboard
+                            text={`I guessed ${userScore} post${userScore !== 1 ? 's' : ''} in a row! Can you do better on upvoteguesser.com?`}
+                            onCopy={() => setIsCopied(true)}
+                        >
+                            <button className="bg-reddit-orange w-full text-3xl font-bold text-white p-4 rounded-2xl shadow">Share</button>
+                        </CopyToClipboard>
                         <Link onClick={() => setUserScore(0)} href="/"><button className="bg-white border-2 w-full text-3xl border-reddit-orange text-reddit-orange p-4 font-bold rounded-2xl">Back home</button></Link>
                     </div>
                 </article>
