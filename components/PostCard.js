@@ -7,6 +7,7 @@ function formatUpvotes(upvotes) {
 
 export default function PostCard({ post, gameState, isRight }) {
     const formattedUpvotes = formatUpvotes(post.upvotes);
+    let bgColor;
     switch (gameState) {
         case "playing":
             return (
@@ -17,7 +18,14 @@ export default function PostCard({ post, gameState, isRight }) {
             )
         case "roundWin":
             // Orange or gray box depending on if this was the correct post
-            const bgColor = (isRight) ? "bg-reddit-orange" : "bg-gray-400";
+            bgColor = (isRight) ? "bg-reddit-orange" : "bg-gray-400";
+            return (
+                <article className={`${bgColor} rounded-2xl shadow p-4 flex justify-center items-center`}>
+                    <p className="text-white font-bold text-5xl">{formattedUpvotes}</p>
+                </article>
+            )
+        case "roundLose":
+            bgColor = (isRight) ? "bg-gray-600" : "bg-gray-400";
             return (
                 <article className={`${bgColor} rounded-2xl shadow p-4 flex justify-center items-center`}>
                     <p className="text-white font-bold text-5xl">{formattedUpvotes}</p>

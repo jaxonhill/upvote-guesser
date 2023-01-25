@@ -2,7 +2,7 @@ import PostSection from "@/components/PostSection"
 import { get_two_random_posts } from "@/utils/get_two_random_posts";
 import { useState } from "react";
 
-// gameState = ["loading", "error", "playing", "roundWin", "gameOver"]
+// gameState = ["loading", "error", "playing", "roundWin", "roundLose", "gameOver"]
 
 export default function GameScreen() {
     // REFACTOR A LOT
@@ -23,6 +23,7 @@ export default function GameScreen() {
     }
 
     const handleStartRound = async () => {
+        setUserAnswer(null);
         setGameState("loading");
         await getAndSetBothPosts();
         setGameState("playing");
@@ -40,7 +41,7 @@ export default function GameScreen() {
             setUserScore(prevScore => prevScore + 1);
             setGameState("roundWin");
         } else {
-            setGameState("gameOver");
+            setGameState("roundLose");
         }
     }
 
@@ -74,9 +75,23 @@ export default function GameScreen() {
                     <button onClick={handleStartRound} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold py-2 px-4 rounded-2xl">Next Round</button>
                 </div>
             )
+        case ("roundLose"):
+            return (
+                <div>
+                    <p className="text-center font-bold text-gray-800 text-3xl">Wrong</p>
+                    <div className="flex flex-col gap-4 mt-6 pb-16 mb-12 border-b-2 border-b-gray-200">
+                        {firstPost && <PostSection post={firstPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === firstPost.id} />}
+                        <p className="text-center text-gray-300 font-bold text-5xl">OR</p>
+                        {secondPost && <PostSection post={secondPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === secondPost.id} />}
+                    </div>
+                    <button onClick={() => setGameState("gameOver")} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold py-2 px-4 rounded-2xl">Next</button>
+                </div>
+            )
         case ("gameOver"):
             return (
-                <p className="text-center">Game Over!</p>
+                <div>
+                    <p className="text-center">Game Over!</p>
+                </div>
             )
         case ("loading"):
             return (
