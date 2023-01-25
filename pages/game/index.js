@@ -5,11 +5,10 @@ import Link from "next/link";
 
 // gameState = ["loading", "error", "playing", "roundWin", "roundLose", "gameOver"]
 
-export default function GameScreen() {
+export default function GameScreen({ userScore, setUserScore }) {
     // REFACTOR A LOT
     const [firstPost, setFirstPost] = useState(null);
     const [secondPost, setSecondPost] = useState(null);
-    const [userScore, setUserScore] = useState(0);
     const [userAnswer, setUserAnswer] = useState(null);
     const [gameState, setGameState] = useState("playing");
 
@@ -59,7 +58,7 @@ export default function GameScreen() {
     // If they do, then refetch. MAKE THIS INTO THE FUNCTION (get_random_posts). SHOULD NOT BE OUT HERE.
     if (firstPost && secondPost) {
         if (firstPost.id === secondPost.id || firstPost.upvotes === secondPost.upvotes) {
-            handleRoundStart();
+            handleStartRound();
         }
     }
 
@@ -106,7 +105,7 @@ export default function GameScreen() {
                     <p className="text-reddit-orange font-bold text-5xl mb-8">{userScore}</p>
                     <div className="w-full flex flex-col gap-4">
                         <button className="bg-reddit-orange w-full text-3xl font-bold text-white p-4 rounded-2xl">Share</button>
-                        <Link href="/"><button className="bg-white border-2 w-full text-3xl border-reddit-orange text-reddit-orange p-4 font-bold rounded-2xl">Back home</button></Link>
+                        <Link onClick={() => setUserScore(0)} href="/"><button className="bg-white border-2 w-full text-3xl border-reddit-orange text-reddit-orange p-4 font-bold rounded-2xl">Back home</button></Link>
                     </div>
                 </article>
             )
