@@ -69,7 +69,6 @@ export default function GameScreen({ userScore, setUserScore }) {
                     {firstPost && <PostSection post={firstPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === firstPost.id} />}
                     <p className="text-center text-gray-600 font-bold text-5xl">OR</p>
                     {secondPost && <PostSection post={secondPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === firstPost.id} />}
-                    <button onClick={handleStartRound} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold py-2 px-4 rounded-2xl">Next Round</button>
                 </div>
             )
         case ("roundWin"):
@@ -81,7 +80,7 @@ export default function GameScreen({ userScore, setUserScore }) {
                         <p className="text-center text-gray-300 font-bold text-5xl">OR</p>
                         {secondPost && <PostSection post={secondPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === secondPost.id} />}
                     </div>
-                    <button onClick={handleStartRound} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold py-2 px-4 rounded-2xl">Next Round</button>
+                    <button onClick={handleStartRound} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold p-4 rounded-2xl shadow">Next Round</button>
                 </div>
             )
         case ("roundLose"):
@@ -93,7 +92,7 @@ export default function GameScreen({ userScore, setUserScore }) {
                         <p className="text-center text-gray-300 font-bold text-5xl">OR</p>
                         {secondPost && <PostSection post={secondPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === secondPost.id} />}
                     </div>
-                    <button onClick={() => setGameState("gameOver")} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold py-2 px-4 rounded-2xl">Next</button>
+                    <button onClick={() => setGameState("gameOver")} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold p-4 rounded-2xl shadow">Next</button>
                 </div>
             )
         case ("gameOver"):
@@ -104,7 +103,7 @@ export default function GameScreen({ userScore, setUserScore }) {
                     </p>
                     <p className="text-reddit-orange font-bold text-5xl mb-8">{userScore}</p>
                     <div className="w-full flex flex-col gap-4">
-                        <button className="bg-reddit-orange w-full text-3xl font-bold text-white p-4 rounded-2xl">Share</button>
+                        <button className="bg-reddit-orange w-full text-3xl font-bold text-white p-4 rounded-2xl shadow">Share</button>
                         <Link onClick={() => setUserScore(0)} href="/"><button className="bg-white border-2 w-full text-3xl border-reddit-orange text-reddit-orange p-4 font-bold rounded-2xl">Back home</button></Link>
                     </div>
                 </article>
