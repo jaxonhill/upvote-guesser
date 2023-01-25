@@ -123,7 +123,15 @@ export default function GameScreen({ userScore, setUserScore }) {
             )
         default:
             return (
-                <p className="text-center">Error...</p>
+                <div className="flex flex-col items-center gap-4">
+                    <h1 className="font-bold text-5xl">Error!</h1>
+                    <p className="text-gray-600 text-center pb-4">Something went wrong... Please start another game.</p>
+                    <div className="w-full pt-8 border-t-2 border-t-gray-200">
+                        <Link className="w-full" onClick={() => setUserScore(0)} href="/">
+                            <button className="bg-white border-2 w-full text-3xl border-reddit-orange text-reddit-orange p-4 font-bold rounded-2xl">Back home</button>
+                        </Link>
+                    </div>
+                </div>
             )
     }
 }
