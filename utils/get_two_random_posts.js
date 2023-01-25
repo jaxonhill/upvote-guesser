@@ -2,21 +2,34 @@ import { fetch_valid_posts } from "./fetch_valid_posts";
 import { get_required_post_info } from "./get_required_post_info";
 
 export const get_two_random_posts = async () => {
-    // Make two valid post arrays that have random subreddits
-    // Will narrow it down later to 1 post each for the game
-    const firstPostOptions = await fetch_valid_posts();
-    const secondPostOptions = await fetch_valid_posts();
-    console.log("FIRST POST OPTIONS: ", firstPostOptions);
-    console.log("SECOND POST OPTIONS: ", secondPostOptions);
+    let firstPost;
+    let secondPost;
 
-    // Make a random choice of which post to use for each
-    const firstPostSelection = firstPostOptions[Math.floor(Math.random() * firstPostOptions.length)];
-    const secondPostSelection = secondPostOptions[Math.floor(Math.random() * secondPostOptions.length)];
+    // Loop until we have two unique posts.
+    while (true) {
+        // Make two valid post arrays that have random subreddits
+        const firstPostOptions = await fetch_valid_posts();
+        const secondPostOptions = await fetch_valid_posts();
 
-    // Return only the info you need
-    const firstPost = get_required_post_info(firstPostSelection);
-    const secondPost = get_required_post_info(secondPostSelection);
+        // Make a random choice of which post to use for each
+        const firstPostSelection = firstPostOptions[Math.floor(Math.random() * firstPostOptions.length)];
+        const secondPostSelection = secondPostOptions[Math.floor(Math.random() * secondPostOptions.length)];
 
+        // Get only the info you need from each post
+        firstPost = get_required_post_info(firstPostSelection);
+        secondPost = get_required_post_info(secondPostSelection);
+
+        console.log(firstPost);
+        console.log(secondPost);
+
+        // If the information is valid: (the choies aren't the same and have different num of upvotes)
+        // then break out of the loop and return the posts.
+        if ((firstPost.id !== secondPost.id) && (firstPost.upvotes !== secondPost.upvotes)) {
+            break;
+        }
+    }
+
+    // Return the unique posts
     return {
         first: firstPost,
         second: secondPost,
