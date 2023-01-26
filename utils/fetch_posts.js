@@ -3,7 +3,7 @@ import { SUBREDDITS_LIST } from "./subreddits_list";
 export async function fetchPosts() {
     const randomSubreddit = getRandomSubreddit();
     const randomSortingExtension = getRandomSortingExtension();
-    const finalFetchURL = `https://www.reddit.com/r/${randomSubreddit}/${randomSortingExtension}`;
+    const finalFetchURL = `https://www.reddit.com/r/${randomSubreddit}/${randomSortingExtension}?raw_json=1`;
 
     console.log(finalFetchURL);
 
