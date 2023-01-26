@@ -3,6 +3,8 @@ import { get_two_random_posts } from "@/utils/get_two_random_posts";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import CopyToClipboard from "react-copy-to-clipboard";
+import { motion } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
 
 // gameState = ["loading", "error", "playing", "roundWin", "roundLose", "gameOver"]
 
@@ -68,39 +70,69 @@ export default function GameScreen({ userScore, setUserScore }) {
     switch (gameState) {
         case ("playing"):
             return (
-                <div className="flex flex-col gap-12 lg:flex-row">
+                <motion.div
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="flex flex-col gap-12 lg:flex-row"
+                >
                     {firstPost && <PostSection post={firstPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === firstPost.id} />}
                     <p className="text-center text-gray-600 font-bold text-5xl self-center">OR</p>
                     {secondPost && <PostSection post={secondPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === firstPost.id} />}
-                </div>
+                </motion.div>
             )
         case ("roundWin"):
             return (
-                <div className="lg:flex lg:flex-col">
+                <motion.article
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="lg:flex lg:flex-col"
+                >
                     <p className="text-center font-bold text-reddit-orange text-3xl lg:text-5xl">Correct!</p>
                     <div className="flex flex-col gap-4 mt-6 pb-16 mb-12 border-b-2 border-b-gray-200 lg:flex-row lg:mt-12">
                         {firstPost && <PostSection post={firstPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === firstPost.id} />}
                         <p className="text-center text-gray-300 font-bold text-5xl lg:self-center lg:px-8">OR</p>
                         {secondPost && <PostSection post={secondPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === secondPost.id} />}
                     </div>
-                    <button onClick={handleStartRound} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold p-4 rounded-2xl shadow lg:max-w-sm lg:self-center">Next Round</button>
-                </div>
+                    <motion.button
+                        onClick={handleStartRound}
+                        className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold p-4 rounded-2xl shadow lg:max-w-sm lg:self-center"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.80 }}
+                    >
+                        Next Round
+                    </motion.button>
+                </motion.article>
             )
         case ("roundLose"):
             return (
-                <div className="lg:flex lg:flex-col">
+                <motion.article
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="lg:flex lg:flex-col"
+                >
                     <p className="text-center font-bold text-gray-800 text-3xl lg:text-5xl">Wrong</p>
                     <div className="flex flex-col gap-4 mt-6 pb-16 mb-12 border-b-2 border-b-gray-200 lg:flex-row lg:mt-12">
                         {firstPost && <PostSection post={firstPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === firstPost.id} />}
                         <p className="text-center text-gray-300 font-bold text-5xl lg:self-center lg:px-8">OR</p>
                         {secondPost && <PostSection post={secondPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === secondPost.id} />}
                     </div>
-                    <button onClick={() => setGameState("gameOver")} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold p-4 rounded-2xl shadow lg:max-w-sm lg:self-center">Next</button>
-                </div>
+                    <motion.button
+                        onClick={() => setGameState("gameOver")}
+                        className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold p-4 rounded-2xl shadow lg:max-w-sm lg:self-center"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.80 }}
+                    >
+                        Next
+                    </motion.button>
+                </motion.article>
             )
         case ("gameOver"):
             return (
-                <article className="bg-white rounded-2xl shadow p-8 flex flex-col items-center lg:max-w-2xl lg:m-auto">
+                <motion.div
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="bg-white rounded-2xl shadow p-8 flex flex-col items-center lg:max-w-2xl lg:m-auto"
+                >
                     <p className="text-3xl text-gray-600 mb-4">
                         Final Score:
                     </p>
@@ -111,15 +143,35 @@ export default function GameScreen({ userScore, setUserScore }) {
                             text={`I guessed ${userScore} post${userScore !== 1 ? 's' : ''} in a row! Can you do better on upvoteguesser.com?`}
                             onCopy={() => setIsCopied(true)}
                         >
-                            <button className="bg-reddit-orange w-full text-3xl font-bold text-white p-4 rounded-2xl shadow">Share</button>
+                            <motion.button
+                                className="bg-reddit-orange w-full text-3xl font-bold text-white p-4 rounded-2xl shadow"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.80 }}
+                            >
+                                Share
+                            </motion.button>
                         </CopyToClipboard>
                         <Link onClick={() => setUserScore(0)} href="/"><button className="bg-white border-2 w-full text-3xl border-reddit-orange text-reddit-orange p-4 font-bold rounded-2xl">Back home</button></Link>
                     </div>
-                </article>
+                </motion.div>
             )
         case ("loading"):
             return (
-                <p className="text-center">Loading!</p>
+                <p className="text-center font-bold text-5xl">
+                    <TypeAnimation
+                        sequence={[
+                            "Loading",
+                            250,
+                            "Loading.",
+                            250,
+                            "Loading..",
+                            250,
+                            "Loading...",
+                        ]}
+                        cursor={false}
+                        repeat={Infinity}
+                    />
+                </p>
             )
         default:
             return (
@@ -128,7 +180,13 @@ export default function GameScreen({ userScore, setUserScore }) {
                     <p className="text-gray-600 text-center pb-4">Something went wrong... Please start another game.</p>
                     <div className="w-full pt-8 border-t-2 border-t-gray-200">
                         <Link className="w-full" onClick={() => setUserScore(0)} href="/">
-                            <button className="bg-white border-2 w-full text-3xl border-reddit-orange text-reddit-orange p-4 font-bold rounded-2xl">Back home</button>
+                            <motion.button
+                                className="bg-white border-2 w-full text-3xl border-reddit-orange text-reddit-orange p-4 font-bold rounded-2xl"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.80 }}
+                            >
+                                Back home
+                            </motion.button>
                         </Link>
                     </div>
                 </div>

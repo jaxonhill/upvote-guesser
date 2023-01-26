@@ -1,8 +1,13 @@
 import Link from "next/link"
+import { motion } from "framer-motion"
 
 export default function Home() {
   return (
-    <div className="max-w-2xl m-auto">
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      className="max-w-2xl m-auto"
+    >
       <article className="bg-white py-6 px-4 rounded-2xl shadow mb-8">
         <h1 className="text-center font-bold text-3xl mb-4">How to Play</h1>
         <ul className="list-disc list-inside w-full flex flex-col gap-2 text-gray-600">
@@ -15,7 +20,15 @@ export default function Home() {
           <li>NOTE: upvoteguesser is not officially affiliated with Reddit in any way. This site just uses the public Reddit API to grab post data.</li>
         </ul>
       </article>
-      <Link href="/game"><button className="w-full shadow p-4 bg-reddit-orange rounded-2xl text-white font-bold text-3xl">Play Game</button></Link>
-    </div> 
+      <Link href="/game">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.80 }}
+          className="w-full shadow p-4 bg-reddit-orange rounded-2xl text-white font-bold text-3xl"
+        >
+          Play Game
+        </motion.button>
+      </Link>
+    </motion.div>
   )
 }
