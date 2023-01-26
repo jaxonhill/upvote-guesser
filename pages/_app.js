@@ -6,7 +6,7 @@ export default function App({ Component, pageProps }) {
   const [userScore, setUserScore] = useState(0);
 
   return (
-    <Layout userScore={userScore}>
+    <Layout userScore={userScore} setUserScore={setUserScore}>
       <Component {...pageProps} userScore={userScore} setUserScore={setUserScore} />
     </Layout>
   )

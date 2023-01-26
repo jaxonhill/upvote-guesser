@@ -1,9 +1,9 @@
 import Navbar from "./Navbar"
 
-export default function Layout({ children, userScore }) {
+export default function Layout({ children, userScore, setUserScore }) {
     return (
         <div>
-            <Navbar userScore={userScore} />
+            <Navbar userScore={userScore} setUserScore={setUserScore} />
             <main className="my-8 mx-4">
                 {children}
             </main>
