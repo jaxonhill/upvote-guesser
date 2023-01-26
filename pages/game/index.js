@@ -68,39 +68,39 @@ export default function GameScreen({ userScore, setUserScore }) {
     switch (gameState) {
         case ("playing"):
             return (
-                <div className="flex flex-col gap-12">
+                <div className="flex flex-col gap-12 lg:flex-row">
                     {firstPost && <PostSection post={firstPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === firstPost.id} />}
-                    <p className="text-center text-gray-600 font-bold text-5xl">OR</p>
+                    <p className="text-center text-gray-600 font-bold text-5xl self-center">OR</p>
                     {secondPost && <PostSection post={secondPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === firstPost.id} />}
                 </div>
             )
         case ("roundWin"):
             return (
-                <div>
-                    <p className="text-center font-bold text-reddit-orange text-3xl">Correct!</p>
-                    <div className="flex flex-col gap-4 mt-6 pb-16 mb-12 border-b-2 border-b-gray-200">
+                <div className="lg:flex lg:flex-col">
+                    <p className="text-center font-bold text-reddit-orange text-3xl lg:text-5xl">Correct!</p>
+                    <div className="flex flex-col gap-4 mt-6 pb-16 mb-12 border-b-2 border-b-gray-200 lg:flex-row lg:mt-12">
                         {firstPost && <PostSection post={firstPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === firstPost.id} />}
-                        <p className="text-center text-gray-300 font-bold text-5xl">OR</p>
+                        <p className="text-center text-gray-300 font-bold text-5xl lg:self-center lg:px-8">OR</p>
                         {secondPost && <PostSection post={secondPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === secondPost.id} />}
                     </div>
-                    <button onClick={handleStartRound} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold p-4 rounded-2xl shadow">Next Round</button>
+                    <button onClick={handleStartRound} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold p-4 rounded-2xl shadow lg:max-w-sm lg:self-center">Next Round</button>
                 </div>
             )
         case ("roundLose"):
             return (
-                <div>
-                    <p className="text-center font-bold text-gray-800 text-3xl">Wrong</p>
-                    <div className="flex flex-col gap-4 mt-6 pb-16 mb-12 border-b-2 border-b-gray-200">
+                <div className="lg:flex lg:flex-col">
+                    <p className="text-center font-bold text-gray-800 text-3xl lg:text-5xl">Wrong</p>
+                    <div className="flex flex-col gap-4 mt-6 pb-16 mb-12 border-b-2 border-b-gray-200 lg:flex-row lg:mt-12">
                         {firstPost && <PostSection post={firstPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === firstPost.id} />}
-                        <p className="text-center text-gray-300 font-bold text-5xl">OR</p>
+                        <p className="text-center text-gray-300 font-bold text-5xl lg:self-center lg:px-8">OR</p>
                         {secondPost && <PostSection post={secondPost} handleVote={handleVote} gameState={gameState} isRight={correctAnswerID === secondPost.id} />}
                     </div>
-                    <button onClick={() => setGameState("gameOver")} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold p-4 rounded-2xl shadow">Next</button>
+                    <button onClick={() => setGameState("gameOver")} className="w-full bg-white border-2 border-reddit-orange text-reddit-orange text-3xl font-bold p-4 rounded-2xl shadow lg:max-w-sm lg:self-center">Next</button>
                 </div>
             )
         case ("gameOver"):
             return (
-                <article className="bg-white rounded-2xl shadow p-8 flex flex-col items-center">
+                <article className="bg-white rounded-2xl shadow p-8 flex flex-col items-center lg:max-w-2xl lg:m-auto">
                     <p className="text-3xl text-gray-600 mb-4">
                         Final Score:
                     </p>

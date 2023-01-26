@@ -11,7 +11,7 @@ export default function PostCard({ post, gameState, isRight }) {
     switch (gameState) {
         case "playing":
             return (
-                <article className="bg-white rounded-2xl shadow p-4">
+                <article className="bg-white rounded-2xl shadow p-4 lg:h-full">
                     <CardHeading subreddit={post.subreddit} title={post.title} />
                     <CardBody img={post.image} text={post.text} />
                 </article>

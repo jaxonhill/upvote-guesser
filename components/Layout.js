@@ -4,7 +4,7 @@ export default function Layout({ children, userScore, setUserScore }) {
     return (
         <div>
             <Navbar userScore={userScore} setUserScore={setUserScore} />
-            <main className="my-8 mx-4">
+            <main className="my-8 mx-4 lg:max-w-6xl lg:mx-auto">
                 {children}
             </main>
             {/* <footer className="absolute bottom-0 w-full flex gap-2 mt-8 items-center justify-between bg-white border-t border-t-gray-200 p-2">

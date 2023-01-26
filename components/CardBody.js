@@ -13,7 +13,7 @@ export default function CardBody({ img, text }) {
 
         <div className={`max-w-full flex flex-col gap-6 ${(img || text) ? "border-t border-t-gray-200 mt-4 pt-4" : ""}`}>
             {img && <img src={img} />}
-            {text && <p className="line-clamp-[8]">{text}</p>}
+            {text && <p className="line-clamp-[10]">{text}</p>}
             {/* <button className="underline text-gray-600 self-end hover:text-gray-900 hover:no-underline">Read More +</button> */}
         </div>
     )

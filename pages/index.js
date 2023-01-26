@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export default function Home() {
   return (
-    <div>
+    <div className="max-w-2xl m-auto">
       <article className="bg-white py-6 px-4 rounded-2xl shadow mb-8">
         <h1 className="text-center font-bold text-3xl mb-4">How to Play</h1>
         <ul className="list-disc list-inside w-full flex flex-col gap-2 text-gray-600">
@@ -16,6 +16,6 @@ export default function Home() {
         </ul>
       </article>
       <Link href="/game"><button className="w-full shadow p-4 bg-reddit-orange rounded-2xl text-white font-bold text-3xl">Play Game</button></Link>
-    </div>
+    </div> 
   )
 }
