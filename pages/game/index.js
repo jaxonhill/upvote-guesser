@@ -59,14 +59,6 @@ export default function GameScreen({ userScore, setUserScore }) {
         }
     }
 
-    // Error checking: Check that both posts do not have the same upvotes or id. 
-    // If they do, then refetch. MAKE THIS INTO THE FUNCTION (get_random_posts). SHOULD NOT BE OUT HERE.
-    // if (firstPost && secondPost) {
-    //     if (firstPost.id === secondPost.id || firstPost.upvotes === secondPost.upvotes) {
-    //         handleStartRound();
-    //     }
-    // }
-
     switch (gameState) {
         case ("playing"):
             return (
@@ -140,7 +132,7 @@ export default function GameScreen({ userScore, setUserScore }) {
                     {isCopied && <p className="text-xl text-gray-600 mb-4 font-bold">Copied to clipboard!</p>}
                     <div className="w-full flex flex-col gap-4">
                         <CopyToClipboard
-                            text={`I guessed ${userScore} post${userScore !== 1 ? 's' : ''} in a row! Can you do better on upvoteguesser.com?`}
+                            text={`I guessed ${userScore} post${userScore !== 1 ? 's' : ''} in a row! Can you do better on upvoteguesser?`}
                             onCopy={() => setIsCopied(true)}
                         >
                             <motion.button
