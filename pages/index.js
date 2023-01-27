@@ -14,7 +14,7 @@ export default function Home() {
           <li>There's two Reddit posts that are randomly chosen from a list of ~100 subreddits.</li>
           <li>From each post, you will receive the: title, main image, and a small snippet of the text. Varies from post to post.</li>
           <li>Posts are chosen from either "Hot," "Top by day," "Top by week," "Top by year," or "Top by all time" sorting.</li>
-          <li>Choose the post that you think got more upvotes!</li>
+          <li>Choose the post that you think has more upvotes!</li>
           <li>If you select the wrong post, the game is over.</li>
           <li>CLICK ON LINKS AT YOUR OWN RISK. It is strongly advisable to stay on upvoteguesser.</li>
           <li>NOTE: upvoteguesser is not officially affiliated with Reddit in any way. This site just uses the public Reddit API to grab post data.</li>
