@@ -5,8 +5,6 @@ export async function fetchPosts() {
     const randomSortingExtension = getRandomSortingExtension();
     const finalFetchURL = `https://www.reddit.com/r/${randomSubreddit}/${randomSortingExtension}?raw_json=1`;
 
-    console.log(finalFetchURL);
-
     const res = await fetch(finalFetchURL);
     const data = await res.json();
 

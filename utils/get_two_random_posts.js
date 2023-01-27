@@ -19,9 +19,6 @@ export const get_two_random_posts = async () => {
         firstPost = get_required_post_info(firstPostSelection);
         secondPost = get_required_post_info(secondPostSelection);
 
-        console.log(firstPost);
-        console.log(secondPost);
-
         // If the information is valid: (the choies aren't the same and have different num of upvotes)
         // then break out of the loop and return the posts.
         if ((firstPost.id !== secondPost.id) && (firstPost.upvotes !== secondPost.upvotes)) {

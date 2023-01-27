@@ -165,7 +165,7 @@ export default function GameScreen({ userScore, setUserScore }) {
             )
         case ("loading"):
             return (
-                <p className="text-center font-bold text-5xl">
+                <div className="text-center font-bold text-5xl">
                     <TypeAnimation
                         sequence={[
                             "Loading",
@@ -179,7 +179,7 @@ export default function GameScreen({ userScore, setUserScore }) {
                         cursor={false}
                         repeat={Infinity}
                     />
-                </p>
+                </div>
             )
         default:
             return (
