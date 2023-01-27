@@ -13,7 +13,7 @@ export default function GameScreen({ userScore, setUserScore }) {
     const [firstPost, setFirstPost] = useState(null);
     const [secondPost, setSecondPost] = useState(null);
     const [userAnswer, setUserAnswer] = useState(null);
-    const [gameState, setGameState] = useState("playing");
+    const [gameState, setGameState] = useState("loading");
     const [isCopied, setIsCopied] = useState(false);
 
     useEffect(() => {
@@ -176,6 +176,7 @@ export default function GameScreen({ userScore, setUserScore }) {
                             250,
                             "Loading...",
                         ]}
+                        deletionSpeed={10}
                         cursor={false}
                         repeat={Infinity}
                     />
