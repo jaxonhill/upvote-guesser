@@ -151,7 +151,15 @@ export default function GameScreen({ userScore, setUserScore }) {
                                 Share
                             </motion.button>
                         </CopyToClipboard>
-                        <Link onClick={() => setUserScore(0)} href="/"><button className="bg-white border-2 w-full text-3xl border-reddit-orange text-reddit-orange p-4 font-bold rounded-2xl">Back home</button></Link>
+                        <Link onClick={() => setUserScore(0)} href="/">
+                            <motion.button
+                                className="bg-white border-2 w-full text-3xl border-reddit-orange text-reddit-orange p-4 font-bold rounded-2xl"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.80 }}
+                            >
+                                Back home
+                            </motion.button>
+                        </Link>
                     </div>
                 </motion.div>
             )
